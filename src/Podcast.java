@@ -8,10 +8,6 @@ public class Podcast extends AudioItem {
         this.episodeNumber = episodeNumber;
     }
 
-    public int getEpisodeNumber() {
-        return episodeNumber;
-    }
-
     @Override
     public String getTypeCode() {
         return "PODCAST";
@@ -23,7 +19,7 @@ public class Podcast extends AudioItem {
     }
 
     @Override
-    public String fullString() {
-        return super.fullString() + "\nEpisode: " + episodeNumber;
+    public String toString() {
+        return super.toString() + "\nEpisode: " + episodeNumber;
     }
 }

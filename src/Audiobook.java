@@ -8,9 +8,6 @@ public class Audiobook extends AudioItem {
         this.narrator = narrator;
     }
 
-    public String getNarrator() {
-        return narrator;
-    }
 
     @Override
     public String getTypeCode() {
@@ -23,7 +20,7 @@ public class Audiobook extends AudioItem {
     }
 
     @Override
-    public String fullString() {
-        return super.fullString() + "\nNarrator: " + narrator;
+    public String toString() {
+        return super.toString() + "\nNarrator: " + narrator;
     }
 }

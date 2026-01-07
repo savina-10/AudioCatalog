@@ -8,9 +8,6 @@ public class Album extends AudioItem {
         this.tracksCount = tracksCount;
     }
 
-    public int getTracksCount() {
-        return tracksCount;
-    }
 
     @Override
     public String getTypeCode() {
@@ -23,7 +20,7 @@ public class Album extends AudioItem {
     }
 
     @Override
-    public String fullString() {
-        return super.fullString() + "\nTracks count: " + tracksCount;
+    public String toString() {
+        return super.toString() + "\nTracks count: " + tracksCount;
     }
 }

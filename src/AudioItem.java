@@ -54,12 +54,8 @@ public abstract class AudioItem {
 
     public abstract String toFileLine();
 
-    public String shortString() {
-        return String.format("[%s] ID=%d | %s | %s | %s | %s | %s | %d",
-                getTypeCode(), id, title, author, genre, duration, category, year);
-    }
-
-    public String fullString() {
+    @Override
+    public String toString() {
         return "Type: " + getTypeCode() + "\n" +
                 "ID: " + id + "\n" +
                 "Title: " + title + "\n" +

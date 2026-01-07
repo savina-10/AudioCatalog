@@ -8,9 +8,6 @@ public class Song extends AudioItem {
         this.albumName = albumName;
     }
 
-    public String getAlbumName() {
-        return albumName;
-    }
 
     @Override
     public String getTypeCode() {
@@ -23,8 +20,8 @@ public class Song extends AudioItem {
     }
 
     @Override
-    public String fullString() {
-        return super.fullString() + "\nAlbum: " + albumName;
+    public String toString() {
+        return super.toString() + "\nAlbum: " + albumName;
     }
 
 }

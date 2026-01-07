@@ -33,7 +33,6 @@ public class Catalog {
         }
         return null;
     }
-
     public AudioItem removeItemById(int id) {
         Iterator<AudioItem> it = items.iterator();
         while (it.hasNext()) {

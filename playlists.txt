@@ -1,2 +1,4 @@
 PLAYLIST|New songs
 ITEM|1
+PLAYLIST|Latino
+ITEM|1

@@ -46,7 +46,7 @@ public class Playlist {
             if (it == null) {
                 sb.append(" - ID ").append(id).append(" (missing from catalog)\n");
             } else {
-                sb.append(" - ").append(it.shortString()).append("\n");
+                sb.append(" - ").append(it.toString()).append("\n");
             }
         }
         return sb.toString();

@@ -64,7 +64,7 @@ public class Main {
         }
 
         catalog.addItem(item);
-        System.out.println("Added: " + item.shortString());
+        System.out.println("Added: " + item);
     }
 
     private static void deleteItem(Catalog catalog) {
@@ -81,7 +81,7 @@ public class Main {
             p.removeItemId(id);
         }
 
-        System.out.println("Deleted: " + removed.shortString());
+        System.out.println("Deleted: " + removed);
     }
 
     private static void searchItems(Catalog catalog) {
@@ -209,7 +209,7 @@ public class Main {
                 System.out.println("Not found.");
             }
             else{
-                System.out.println(item.fullString());
+                System.out.println(item);
             }
         } else if (ch == 2) {
             String name = readNonEmpty("Playlist name: ");
@@ -231,7 +231,7 @@ public class Main {
             return;
         }
         System.out.println("Results: " + items.size());
-        items.forEach(i -> System.out.println(" - " + i.shortString()));
+        items.forEach(i -> System.out.println(" - " + i.toString()));
     }
 
 
@@ -244,9 +244,7 @@ public class Main {
             System.out.println("4) Remove item from playlist");
             System.out.println("5) Show playlist info");
             System.out.println("6) Sort playlist items by title (view)");
-            System.out.println("7) Save ONE playlist to file");
-            System.out.println("8) Load ONE playlist from file");
-            System.out.println("9) List all playlists");
+            System.out.println("7) List all playlists");
             System.out.println("0) Back");
             int ch = readInt("Choice: ");
 
@@ -257,9 +255,7 @@ public class Main {
                 case 4 -> removeItemFromPlaylist(catalog);
                 case 5 -> showPlaylistInfo(catalog);
                 case 6 -> showPlaylistSortedByTitle(catalog);
-                case 7 -> saveOnePlaylist(catalog);
-                case 8 -> loadOnePlaylist(catalog);
-                case 9 -> listPlaylists(catalog);
+                case 7 -> listPlaylists(catalog);
                 case 0 -> { return; }
                 default -> System.out.println("Invalid choice.");
             }
@@ -312,7 +308,7 @@ public class Main {
         }
 
         p.addItemId(id);
-        System.out.println("Added: " + item.shortString() + " to " + p.getName());
+        System.out.println("Added: " + item + " to " + p.getName());
     }
 
     private static void removeItemFromPlaylist(Catalog catalog) {
@@ -361,41 +357,11 @@ public class Main {
         }
 
         System.out.println("Playlist '" + p.getName() + "' sorted by title:");
-        sorted.forEach(it -> System.out.println(" - " + it.shortString()));
+        sorted.forEach(it -> System.out.println(" - " + it.toString()));
     }
 
-    private static void saveOnePlaylist(Catalog catalog) {
-        TextStorage storage = new TextStorage();
-        String name = readNonEmpty("Playlist name: ");
-        Playlist p = catalog.findPlaylistByName(name);
-        if (p == null) {
-            System.out.println("Not found.");
-            return;
-        }
 
-        String filename = "playlist_" + safeFileName(name) + ".txt";
-        storage.saveSinglePlaylist(filename, p);
-        System.out.println("Saved playlist to " + filename);
-    }
 
-    private static void loadOnePlaylist(Catalog catalog) {
-        TextStorage storage = new TextStorage();
-        String filename = readNonEmpty("Filename (e.g. playlist_Workout.txt): ");
-
-        Playlist p = storage.loadSinglePlaylist(filename);
-        if (p == null) {
-            System.out.println("Could not load playlist.");
-            return;
-        }
-
-        Playlist existing = catalog.findPlaylistByName(p.getName());
-        if (existing != null){
-            catalog.getPlaylists().remove(existing);
-        }
-        catalog.getPlaylists().add(p);
-
-        System.out.println("Loaded playlist: " + p.getName());
-    }
 
     private static void listPlaylists(Catalog catalog) {
         if (catalog.getPlaylists().isEmpty()) {
@@ -441,9 +407,6 @@ public class Main {
         return false;
     }
 
-    private static String safeFileName(String name) {
-        return name.replaceAll("[^a-zA-Z0-9_\\-]", "_");
-    }
     public static void main(String[] args) {
         Catalog catalog = new Catalog();
         TextStorage storage = new TextStorage();
