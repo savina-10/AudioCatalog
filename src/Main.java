@@ -27,34 +27,18 @@ public class Main {
         switch (t) {
             case 1 -> {
                 String albumName = readNonEmpty("Album name: ");
-                if (containsPipe(title, author, genre, duration, category, albumName)) {
-                    System.out.println("Error: fields must NOT contain '|'.");
-                    return;
-                }
                 item = new Song(id, title, author, genre, duration, category, year, albumName);
             }
             case 2 -> {
                 int ep = readInt("Episode number: ");
-                if (containsPipe(title, author, genre, duration, category)) {
-                    System.out.println("Error: fields must NOT contain '|'.");
-                    return;
-                }
                 item = new Podcast(id, title, author, genre, duration, category, year, ep);
             }
             case 3 -> {
                 String narrator = readNonEmpty("Narrator: ");
-                if (containsPipe(title, author, genre, duration, category, narrator)) {
-                    System.out.println("Error: fields must NOT contain '|'.");
-                    return;
-                }
                 item = new Audiobook(id, title, author, genre, duration, category, year, narrator);
             }
             case 4 -> {
                 int tracks = readInt("Tracks count: ");
-                if (containsPipe(title, author, genre, duration, category)) {
-                    System.out.println("Error: fields must NOT contain '|'.");
-                    return;
-                }
                 item = new Album(id, title, author, genre, duration, category, year, tracks);
             }
             default -> {
@@ -264,10 +248,7 @@ public class Main {
 
     private static void createPlaylist(Catalog catalog) {
         String name = readNonEmpty("New playlist name: ");
-        if (containsPipe(name)) {
-            System.out.println("Name must NOT contain '|'.");
-            return;
-        }
+
         if (catalog.findPlaylistByName(name) != null) {
             System.out.println("Playlist already exists.");
             return;
@@ -398,14 +379,6 @@ public class Main {
         }
     }
 
-    private static boolean containsPipe(String... fields) {
-        for (String f : fields) {
-            if (f != null && f.contains("|")){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static void main(String[] args) {
         Catalog catalog = new Catalog();
